@@ -1,0 +1,44 @@
+{
+	"variables":{
+		"ssh_name": "root",
+		"ssh_pass": "vmware",
+		"hostname": "centos-6"
+	},
+
+	"builders": [
+			{
+				"type": "vmware-iso",
+				"boot_command": [
+					"<tab><wait> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos6-prod.kickstart<wait><wait><enter><wait>"
+				],
+				"boot_wait": "10s",
+				"disk_size": 20480,
+				"iso_url": "c:\\dgee\\CentOS-6.iso",
+				"iso_checksum": "eb3c8be6ab668e6d83a118323a789e6c",
+				"iso_checksum_type": "md5",
+				"vm_name": "centos-6",
+				"guest_os_type": "centos-64",
+				"http_directory": "http",
+				"ssh_username": "root",
+				"ssh_password": "vmware",
+				"ssh_port": 22,
+				"ssh_wait_timeout": "1200s",
+				"shutdown_command": "/sbin/shutdown -hP now",
+				"tools_upload_flavor": "linux"
+		}
+	],
+
+	"provisioners": [
+	{
+		"type": "shell",
+		"override": {
+			"vmware-iso": {
+				"scripts": [
+					"scripts/centos/base.sh",
+					"scripts/centos/clean.sh"
+				]
+			}
+		}
+	}
+	]
+}
