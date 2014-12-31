@@ -2,25 +2,28 @@
 	"variables":{
 		"ssh_name": "root",
 		"ssh_pass": "vmware",
-		"hostname": "centos-6"
+		"hostname": "",
+		"kickstart": "",
+		"iso_link": "/home/jho/Bureau/iso/CentOS-6.6-x86_64-minimal.iso",
+		"disk_size": "20480"
 	},
 
 	"builders": [
 			{
 				"type": "vmware-iso",
 				"boot_command": [
-					"<tab><wait> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos6-prod.kickstart<wait><wait><enter><wait>"
+					"<tab><wait> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `kickstart`}}<wait><wait><enter><wait>"
 				],
 				"boot_wait": "10s",
-				"disk_size": 20480,
-				"iso_url": "/home/jho/Bureau/iso/CentOS-6.6-x86_64-minimal.iso",
+				"disk_size": "{{user `disk_size`}}",
+				"iso_url": "{{user `iso_link`}}",
 				"iso_checksum": "eb3c8be6ab668e6d83a118323a789e6c",
 				"iso_checksum_type": "md5",
-				"vm_name": "centos-6",
+				"vm_name": "{{user `hostname`}}",
 				"guest_os_type": "centos-64",
 				"http_directory": "http",
-				"ssh_username": "root",
-				"ssh_password": "vmware",
+				"ssh_username": "{{user `ssh_name`}}",
+				"ssh_password": "{{user `ssh_pass`}}",
 				"ssh_port": 22,
 				"ssh_wait_timeout": "1200s",
 				"shutdown_command": "/sbin/shutdown -hP now"

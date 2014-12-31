@@ -1,0 +1,5 @@
+{
+  "hostname": "centos-6",
+  "kickstart": "centos6-prod.kickstart",
+  "disk_size": "20480"
+}
