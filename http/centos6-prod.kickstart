@@ -37,3 +37,13 @@ reboot
 %packages --nobase
 @core
 %end
+
+%post
+# add vmware-tools repository
+cat > /etc/yum.repos.d/vmware-tools.repo <<EOF
+[vmware-tools]
+name=VMware Tools
+baseurl=http://packages.vmware.com/tools/esx/latest/rhel6/x86_64
+enabled=1
+gpgcheck=1
+EOF

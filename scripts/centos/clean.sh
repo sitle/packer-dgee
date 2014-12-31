@@ -9,7 +9,7 @@ cat /dev/null > /var/log/wtmp
 rm -f /etc/udev/rules.d/70-*.rules
 
 # remove trave of the template Mac address and UUIDs
-sed -i '/^\(HWADDR\UUID\)=/d' /etc/sysconfig/network-scripts/ifcfg-eth0
+sed -i '/^\(HWADDR\|UUID\)=/d' /etc/sysconfig/network-scripts/ifcfg-eth0
 
 # Clean /tmp
 rm -fr /tmp/*
