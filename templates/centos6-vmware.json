@@ -2,7 +2,7 @@
 	"variables":{
 		"ssh_name": "root",
 		"ssh_pass": "vmware",
-		"hostname": "",
+		"hostname": "centos-6",
 		"kickstart": "",
 		"iso_link": "/home/jho/Bureau/iso/CentOS-6.6-x86_64-minimal.iso",
 		"disk_size": "20480"
