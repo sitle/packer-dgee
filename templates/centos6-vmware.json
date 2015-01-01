@@ -26,7 +26,8 @@
 				"ssh_password": "{{user `ssh_pass`}}",
 				"ssh_port": 22,
 				"ssh_wait_timeout": "1200s",
-				"shutdown_command": "/sbin/shutdown -hP now"
+				"shutdown_command": "/sbin/shutdown -hP now",
+				"tools_upload_flavor": "linux"
 		}
 	],
 
@@ -37,6 +38,7 @@
 			"vmware-iso": {
 				"scripts": [
 					"scripts/centos/base.sh",
+					"scripts/centos/vmware-tools2.sh",
 					"scripts/centos/clean.sh"
 				]
 			}
